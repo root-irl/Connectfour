@@ -1,57 +1,48 @@
 #!/bin/bash/python3
+import sys
+sys.path.append(".")
+import GameText
+import GameBoard
 
 #Code for choosing the game mode
-class Main:
+class ConnectFour:
 	def __init__(self):
 		self.one_or_two = ''
-
-#For starting the game the first time
+		self.gb_dict = {"line_top": " --- --- --- --- --- --- --- ", "row_1": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_2": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_3": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_4": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_5": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_6": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"]}
+		self.player_one = ""
+		self.player_two = ""
+		self.wife_flag = 0
+		self.turn_num = 1
+		
+#Define functions from GameText.py
 	def beginning_game(self):
-		print("Welcome to Connect Four!")
-		print("Would you like to play against the computer or with a friend?")
-		return self.game_selection()
+		GameText.beginning_game(self)
 		
-#For starting the game for replay
 	def replay(self):
-		correct_input = False
-		print("Would you like to play again?")
-		print("Type: Yes or No.")
-		while correct_input == False:
-			self.one_or_two = input('-->')
-			self.one_or_two = self.one_or_two.lower()
-			if self.one_or_two == 'yes':
-				print("Awesome, thank you for playing again!")
-				return self.game_selection()
-			elif  self.one_or_two == 'no':
-				print("Awesome, thank you for playing!")
-				correct_input = True
-			else:
-				print("That is not the correct input!")
-				print("Please try again!")
-		return 
+		GameText.replay(self)
 		
-#Game mode selection
 	def game_selection(self):
-		correct_input = False
-		print("Select one or two players.")
-		print("Type: One or Two.")
-		while correct_input == False:
-			self.one_or_two = input('-->')
-			self.one_or_two = self.one_or_two.lower()
-			if self.one_or_two == 'one' or self.one_or_two == 'two':
-				correct_input = True
-			else:
-				print("That is not the correct input!")
-				print("Please try again!")
-		return self.game_mode_test(self.one_or_two)
+		GameText.game_selection(self)
+	
+	def gb_landing_two(self):
+		GameText.gb_landing_two(self)
+	
+	def play_select(self, name):
+		GameText.play_select(self, name)
 
-#For testing purposes
-	def game_mode_test(self, game_choice):
-		print("You are in game mode {} and you \"played\" the game".format(game_choice))
-		return self.replay()
+#Define functions from GameBoard.py
+	def print_gb(self):
+		GameBoard.print_gb(self)
 		
-welcome_1 = Main()
-welcome_1.beginning_game()
+	def turn_select(self):
+		GameBoard.turn_select(self)
+	
+	def change_row(self, selection):
+		GameBoard.change_row(self, selection)
+	
+		
+ready_player_1 = ConnectFour()
+ready_player_1.beginning_game()
 
 
 
