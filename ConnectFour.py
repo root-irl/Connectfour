@@ -1,4 +1,5 @@
 #!/bin/bash/python3
+import os
 import sys
 sys.path.append(".")
 import GameText
@@ -8,11 +9,15 @@ import GameBoard
 class ConnectFour:
 	def __init__(self):
 		self.one_or_two = ''
-		self.gb_dict = {"line_top": " --- --- --- --- --- --- --- ", "row_1": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_2": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_3": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_4": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_5": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "row_6": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"]}
+		self.gb_dict = {"line_top": " --- --- --- --- --- --- --- ", "6": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "5": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "4": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "3": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "2": ["|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |", "|   |   |   |   |   |   |   |"], "1": ["|1  |   |   |   |   |   |   |", "|1  |   |   |   |   |   |   |", "|1  |   |   |   |   |   |   |"]}
+		self.gb_ref = {"1": [ " ", " ", " ", " ", " ", " ", " "], "2": [ " ", " ", " ", " ", " ", " ", " "], "3": [ " ", " ", " ", " ", " ", " ", " "], "4": [ " ", " ", " ", " ", " ", " ", " "], "5": [ " ", " ", " ", " ", " ", " ", " "], "6": [ " ", " ", " ", " ", " ", " ", " "]}
 		self.player_one = ""
 		self.player_two = ""
 		self.wife_flag = 0
-		self.turn_num = 1
+		self.turn_num = 0
+		self.row_key = ""
+		self.xo_val = ""
+		self.reselect_flag = False
 		
 #Define functions from GameText.py
 	def beginning_game(self):
@@ -39,6 +44,9 @@ class ConnectFour:
 	
 	def change_row(self, selection):
 		GameBoard.change_row(self, selection)
+		
+	def find_row(self, column):
+		GameBoard.find_row(self, column)
 	
 		
 ready_player_1 = ConnectFour()

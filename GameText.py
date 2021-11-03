@@ -1,4 +1,5 @@
 #!/bin/bash/python3
+import os
 
 #For starting the game the first time
 def beginning_game(self):
@@ -59,8 +60,16 @@ def gb_landing_two(self):
 	
 #Player move selection
 def play_select(self, name):
-	print("  1   2   3   4   5   6   7")
-	self.print_gb()
+	selection = 0
+	sel_list = ["1", "2", "3", "4", "5", "6"]
 	print("{} is X and {} is O!".format(self.player_one, self.player_two))
-	print("It's your turn to choose a column, {}!".format(name))
-	return self.change_row(input("-->"))
+	print("It's your turn, {}! Choose a column number.".format(name))
+	selection_test = False
+	while selection_test == False:
+		selection = input("-->")
+		if selection in sel_list:
+			selection_test = True
+			return self.change_row(selection)
+		else:
+			print("Something went wrong!")
+			print("Please select again using a number. (ie. 4)")
