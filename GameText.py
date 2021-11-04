@@ -61,7 +61,7 @@ def gb_landing_two(self):
 #Player move selection
 def play_select(self, name):
 	selection = 0
-	sel_list = ["1", "2", "3", "4", "5", "6"]
+	sel_list = ["1", "2", "3", "4", "5", "6", "7"]
 	print("{} is X and {} is O!".format(self.player_one, self.player_two))
 	print("It's your turn, {}! Choose a column number.".format(name))
 	selection_test = False
@@ -73,3 +73,13 @@ def play_select(self, name):
 		else:
 			print("Something went wrong!")
 			print("Please select again using a number. (ie. 4)")
+			
+#Checks for winner and congratz
+def winner(self):
+	if self.win_condition == False:
+		return self.turn_select()
+	else:
+		print("Congratulations, {}! You won!".format(self.winner))
+		self.winner = ""
+		self.win_condition = False
+	return self.replay()

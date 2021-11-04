@@ -18,6 +18,9 @@ class ConnectFour:
 		self.row_key = ""
 		self.xo_val = ""
 		self.reselect_flag = False
+		self.current_player = ""
+		self.winner = ""
+		self.win_condition = False
 		
 #Define functions from GameText.py
 	def beginning_game(self):
@@ -34,6 +37,9 @@ class ConnectFour:
 	
 	def play_select(self, name):
 		GameText.play_select(self, name)
+		
+	def winner(self):
+		GameText.winner(self)
 
 #Define functions from GameBoard.py
 	def print_gb(self):
@@ -47,6 +53,9 @@ class ConnectFour:
 		
 	def find_row(self, column):
 		GameBoard.find_row(self, column)
+		
+	def win_test(self):
+		GameBoard.win_test(self)
 	
 		
 ready_player_1 = ConnectFour()
